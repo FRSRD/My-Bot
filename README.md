@@ -42,8 +42,3 @@ Apply for API access by providing the necessary information about how you plan t
 
 After your application is reviewed and approved, you will receive your API key.
 The API key will be available in your affiliate account dashboard.
-
-### يسمح بإستعمال هذا الكود لغرض ربحي 
-# دعواتكم لنا
-
->> https://loudz.gumroad.com/l/cjsxvm

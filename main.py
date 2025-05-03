@@ -30,7 +30,7 @@ keyboard_games.add(btn1, btn2, btn3)
 def welcome_user(message):
     bot.send_message(
         message.chat.id,
-        "مرحبا بك، ارسل لنا رابط المنتج الذي تريد شرائه لنوفر لك افضل سعر له 👌 \n",
+        " بوت للعثور على أفضل التخفيضات في AliExpress 🛍 .\n\t\n\n\tمهمة هذا البوت زيادة نسبة التخفيض بالعملات (النقاط) 💰 \nو عرضها بطريقة تمكنك من مقارنتها بمختلف العروض\n\n يعطي وصفًا مبسطًا عن المتجر  ℹ️  ونسبة موثوقيته 👍 . \n\n\n أرسل رابط المنتج واحصل على الصفقة 🛒!",
         reply_markup=keyboardStart
     )
 
@@ -151,7 +151,7 @@ def get_link(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def handle_callback_query(call):
-    bot.send_message(call.message.chat.id, "..")
+    bot.send_message(call.message.chat.id, "استغل وقت الانتظار بالإستغفار")
 
     img_link2 = "https://i.postimg.cc/zvDbVTS0/photo-5893070682508606110-x.jpg"
     bot.send_photo(

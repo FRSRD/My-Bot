@@ -6,6 +6,7 @@ import requests, json
 from urllib.parse import urlparse, parse_qs
 import urllib.parse
 import os
+from keep_alive import keep_alive
 
 bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
 bot = telebot.TeleBot(bot_token)
@@ -17,7 +18,7 @@ aliexpress = AliexpressApi(app_key, app_secret,
 keyboardStart = types.InlineKeyboardMarkup(row_width=1)
 btn1 = types.InlineKeyboardButton("⭐️ألعاب لجمع العملات المعدنية⭐️", callback_data="games")
 btn2 = types.InlineKeyboardButton("⭐️تخفيض العملات على منتجات السلة 🛒⭐️", callback_data='click')
-btn3 = types.InlineKeyboardButton("❤️ اشترك في القناة للمزيد من العروض ❤️", url="t.me/Tcoupon")
+btn3 = types.InlineKeyboardButton("❤️ اشترك في القناة للمزيد من العروض ❤️", url="t.me/RFSTORE_Online")
 keyboardStart.add(btn1, btn2, btn3)
 
 keyboard = types.InlineKeyboardMarkup(row_width=1)
@@ -38,12 +39,12 @@ def welcome_user(message):
 def button_click(callback_query):
     bot.edit_message_text(chat_id=callback_query.message.chat.id,
                           message_id=callback_query.message.message_id,
-                          text="...")
+                          text=" إنتظر من فضلك ❤️ ")
 
     img_link1 = "https://i.postimg.cc/HkMxWS1T/photo-5893070682508606111-y.jpg"
     bot.send_photo(callback_query.message.chat.id,
                    img_link1,
-                   caption="",
+                   caption="خبز يابس",
                    reply_markup=keyboard)
 
 def get_affiliate_links(message, message_id, link):
@@ -83,7 +84,7 @@ def get_affiliate_links(message, message_id, link):
 
         except:
             bot.delete_message(message.chat.id, message_id)
-            bot.send_message(message.chat.id, 
+            bot.send_message(message.chat.id,
                              "قارن بين الاسعار واشتري 🔥 \n"
                              f"💰 عرض العملات (السعر النهائي عند الدفع) : \nالرابط {affiliate_link} \n"
                              f"💎 عرض السوبر : \nالرابط {super_links} \n"
@@ -95,7 +96,7 @@ def get_affiliate_links(message, message_id, link):
         bot.send_message(message.chat.id, "حدث خطأ 🤷🏻‍♂️")
 
 def extract_link(text):
-    link_pattern = r'https?://\S+|www\.\S+'
+    link_pattern = r'https?://[^\s<>"]+|www\.[^\s<>"]+'
     links = re.findall(link_pattern, text)
     if links:
         return links[0]
@@ -160,5 +161,5 @@ def handle_callback_query(call):
         caption="روابط ألعاب جمع العملات المعدنية لإستعمالها في خفض السعر لبعض المنتجات، "
                 "قم بالدخول يوميا لها للحصول على أكبر عدد ممكن في اليوم 👇",
         reply_markup=keyboard_games)
-
+keep_alive()
 bot.infinity_polling(timeout=10, long_polling_timeout=5)

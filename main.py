@@ -44,7 +44,7 @@ def button_click(callback_query):
     img_link1 = "https://i.postimg.cc/HkMxWS1T/photo-5893070682508606111-y.jpg"
     bot.send_photo(callback_query.message.chat.id,
                    img_link1,
-                   caption="خبز يابس",
+                   caption="",
                    reply_markup=keyboard)
 
 def get_affiliate_links(message, message_id, link):
@@ -96,7 +96,7 @@ def get_affiliate_links(message, message_id, link):
         bot.send_message(message.chat.id, "حدث خطأ 🤷🏻‍♂️")
 
 def extract_link(text):
-    link_pattern = r'https?://[^\s<>"]+|www\.[^\s<>"]+'
+    link_pattern = r'https?://\S+|www\.\S+'
     links = re.findall(link_pattern, text)
     if links:
         return links[0]
